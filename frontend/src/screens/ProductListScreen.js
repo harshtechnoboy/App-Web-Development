@@ -77,6 +77,16 @@ export default function ProductListScreen() {
   const { state } = useContext(Store);
   const { userInfo } = state;
 
+  const [name, setName] = useState('');
+  const [slug, setSlug] = useState('');
+  const [price, setPrice] = useState(0);
+  const [image, setImage] = useState('');
+  const [images, setImages] = useState([]);
+  const [category, setCategory] = useState('');
+  const [brand, setBrand] = useState('');
+  const [countInStock, setCountInStock] = useState(0);
+  const [description, setDescription] = useState('');
+
   useEffect(() => {
     const fetchData = async () => {
       try {
