@@ -96,12 +96,25 @@ export default function ProductListScreen() {
   }, [page, userInfo, successDelete]);
 
   const createHandler = async () => {
-    if (window.confirm('Are you sure to create?')) {
+    if (window.confirm('Do you confirm to create new product?')) {
       try {
         dispatch({ type: 'CREATE_REQUEST' });
+
+        const productData = {
+          name,
+          slug,
+          price,
+          image,
+          images,
+          category,
+          brand,
+          countInStock,
+          description,
+        };
+
         const { data } = await axios.post(
           '/api/products',
-          {},
+          productData,
           {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           }

@@ -32,7 +32,7 @@ export default function SignupScreen() {
     e.preventDefault();
 
     if (!isValidEmail(email)) {
-      toast.error('Please enter a valid email ending with .com');
+      toast.error('Please enter an email with a valid ending like ".com",".de"');
       return;
     }
 
