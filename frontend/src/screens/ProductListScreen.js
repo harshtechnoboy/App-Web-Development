@@ -77,15 +77,17 @@ export default function ProductListScreen() {
   const { state } = useContext(Store);
   const { userInfo } = state;
 
-  const [name, setName] = useState('');
-  const [slug, setSlug] = useState('');
-  const [price, setPrice] = useState(0);
-  const [image, setImage] = useState('');
-  const [images, setImages] = useState([]);
-  const [category, setCategory] = useState('');
   const [brand, setBrand] = useState('');
+  const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
+  const [image, setImage] = useState('');
+  const [images, setImages] = useState([]);
+  const [name, setName] = useState('');
+  const [numReviews, setNumReviews] = useState(0); 
+  const [price, setPrice] = useState(0);
+  const [rating, setRating] = useState(0); 
+  const [slug, setSlug] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -111,15 +113,18 @@ export default function ProductListScreen() {
         dispatch({ type: 'CREATE_REQUEST' });
 
         const productData = {
-          name,
-          slug,
-          price,
-          image,
-          images,
-          category,
-          brand,
-          countInStock,
-          description,
+
+          brand: 'sample brand',
+          category: 'sample category',
+          countInStock: 0,
+          description: 'sample description',
+          image: '/images/sample.jpg',
+          images: [],
+          name: 'sample name' + Date.now(),
+          numReviews: 0,
+          price: 0,
+          rating: 0,
+          slug: 'sample-slug-' + Date.now(),
         };
 
         const { data } = await axios.post(

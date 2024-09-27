@@ -15,20 +15,29 @@ productRouter.post(
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
-    const newProduct = newProduct({
-      name: 'sample name ' + Date.now(),
-      slug: 'sample-name-' + Date.now(),
-      image: '/images/product1.jpg',
-      price: 0,
-      category: 'sample category',
+    console.log('Request body:', req.body);
+    const newProduct = new Product({
       brand: 'sample brand',
+      category: 'sample category',
       countInStock: 0,
-      rating: 0,
-      numReviews: 0,
       description: 'sample description',
+      image: '/images/sample.jpg',
+      images: [],
+      name: 'sample name ' + Date.now(),
+      numReviews: 0,
+      price: 0,
+      rating: 0,
+      slug: 'sample-slug-' + Date.now(),
+      
+
     });
+    try{
     const product = await newProduct.save();
-    res.send({ message: 'Product Created', product });
+    res.send({ message: 'Product Created', product });    
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({message: 'Error creating new product'});
+    }
   })
 );
 
@@ -40,15 +49,16 @@ productRouter.put(
     const productId = req.params.id;
     const product = await Product.findById(productId);
     if (product) {
-      product.name = req.body.name;
-      product.slug = req.body.slug;
-      product.price = req.body.price;
-      product.image = req.body.image;
-      product.images = req.body.images;
-      product.category = req.body.category;
       product.brand = req.body.brand;
+      product.category = req.body.category;
       product.countInStock = req.body.countInStock;
       product.description = req.body.description;
+      product.image = req.body.image;
+      product.images = req.body.images;
+      product.name = req.body.name;
+      product.price = req.body.price;
+      product.slug = req.body.slug;
+
       await product.save();
       res.send({ message: 'Product Updated' });
     } else {

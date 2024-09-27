@@ -43,7 +43,7 @@ const reducer = (state, action) => {
 };
 export default function ProductEditScreen() {
   const navigate = useNavigate();
-  const params = useParams(); // /product/:id
+  const params = useParams();
   const { id: productId } = params;
 
   const { state } = useContext(Store);
@@ -59,10 +59,11 @@ export default function ProductEditScreen() {
   const [price, setPrice] = useState('');
   const [image, setImage] = useState('');
   const [images, setImages] = useState([]);
-  const [category, setCategory] = useState('');
-  const [countInStock, setCountInStock] = useState('');
   const [brand, setBrand] = useState('');
+  const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
+  const [countInStock, setCountInStock] = useState('');
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -75,9 +76,9 @@ export default function ProductEditScreen() {
         setImage(data.image);
         setImages(data.images);
         setCategory(data.category);
-        setCountInStock(data.countInStock);
         setBrand(data.brand);
         setDescription(data.description);
+        setCountInStock(data.countInStock);
         dispatch({ type: 'FETCH_SUCCESS' });
       } catch (err) {
         dispatch({
@@ -96,16 +97,16 @@ export default function ProductEditScreen() {
       await axios.put(
         `/api/products/${productId}`,
         {
-          _id: productId,
-          name,
-          slug,
-          price,
-          image,
-          images,
-          category,
           brand,
+          category,
           countInStock,
           description,
+          _id: productId,
+          image,
+          images,
+          name,
+          price,
+          slug,
         },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
