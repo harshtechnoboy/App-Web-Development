@@ -131,7 +131,7 @@ userRouter.put(
       user.email = req.body.email || user.email;
       user.isAdmin = Boolean(req.body.isAdmin);
       const updatedUser = await user.save();
-      res.send({ message: 'User Updated', user: updatedUser });
+      res.send({ message: 'User has been updated', user: updatedUser });
     } else {
       res.status(404).send({ message: 'User Not Found' });
     }

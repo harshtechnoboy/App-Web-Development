@@ -88,7 +88,7 @@ function ProductScreen() {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (!comment || !rating) {
-      toast.error('Please enter comment and rating');
+      toast.error('Please leave a review and rating');
       return;
     }
     try {

@@ -140,7 +140,7 @@ export default function ProductEditScreen() {
       } else {
         setImage(data.secure_url);
       }
-      toast.success('Image has been uploaded, click on Update to save changes');
+      toast.success('Image has been uploaded, click on update to save changes');
     } catch (err) {
       toast.error(getError(err));
       dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });

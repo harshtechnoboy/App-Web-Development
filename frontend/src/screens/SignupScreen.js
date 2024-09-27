@@ -22,8 +22,25 @@ export default function SignupScreen() {
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
+
+  const isValidEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email) && email.endsWith('.com');
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    if (!isValidEmail(email)) {
+      toast.error('Please enter a valid email ending with .com');
+      return;
+    }
+
+    if (password.length < 8) {
+      toast.error('Password must have at least 8 characters');
+      return;
+    }
+
     if (password !== confirmPassword) {
       toast.error('Passwords do not match');
       return;
