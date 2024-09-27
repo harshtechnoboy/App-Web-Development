@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
@@ -77,18 +77,6 @@ export default function ProductListScreen() {
   const { state } = useContext(Store);
   const { userInfo } = state;
 
-  const [brand, setBrand] = useState('');
-  const [category, setCategory] = useState('');
-  const [countInStock, setCountInStock] = useState(0);
-  const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
-  const [images, setImages] = useState([]);
-  const [name, setName] = useState('');
-  const [numReviews, setNumReviews] = useState(0); 
-  const [price, setPrice] = useState(0);
-  const [rating, setRating] = useState(0); 
-  const [slug, setSlug] = useState('');
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -111,25 +99,9 @@ export default function ProductListScreen() {
     if (window.confirm('Do you confirm to create new product?')) {
       try {
         dispatch({ type: 'CREATE_REQUEST' });
-
-        const productData = {
-
-          brand: 'sample brand',
-          category: 'sample category',
-          countInStock: 0,
-          description: 'sample description',
-          image: '/images/sample.jpg',
-          images: [],
-          name: 'sample name' + Date.now(),
-          numReviews: 0,
-          price: 0,
-          rating: 0,
-          slug: 'sample-slug-' + Date.now(),
-        };
-
         const { data } = await axios.post(
           '/api/products',
-          productData,
+          {},
           {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           }

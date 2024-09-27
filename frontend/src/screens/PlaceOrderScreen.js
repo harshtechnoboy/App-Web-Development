@@ -12,6 +12,7 @@ import { getError } from '../utils';
 import { Store } from '../Store';
 import CheckoutSteps from '../components/CheckoutSteps';
 import LoadingBox from '../components/LoadingBox';
+import axios from 'axios';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -48,7 +49,7 @@ export default function PlaceOrderScreen() {
     try {
       dispatch({ type: 'CREATE_REQUEST' });
 
-      const { data } = await Axios.post(
+      const { data } = await axios.post(
         '/api/orders',
         {
           orderItems: cart.cartItems,

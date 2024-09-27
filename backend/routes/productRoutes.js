@@ -15,7 +15,6 @@ productRouter.post(
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
-    try {
     const newProduct = new Product({
       brand: req.body.brand,
       category: req.body.category,
@@ -31,12 +30,8 @@ productRouter.post(
     });
     
     const product = await newProduct.save();
-    res.send({ message: 'Product Created', product });    
-    } catch (error) {
-      console.error('Error creating product:', error);
-      res.status(500).send({message: 'Error creating product', error: error.message});
-    }
-  })
+    res.send({ message: 'Product Created', product });
+   })
 );
 
 productRouter.put(
