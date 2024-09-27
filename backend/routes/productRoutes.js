@@ -15,28 +15,26 @@ productRouter.post(
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
-    console.log('Request body:', req.body);
+    try {
     const newProduct = new Product({
-      brand: 'sample brand',
-      category: 'sample category',
-      countInStock: 0,
-      description: 'sample description',
-      image: '/images/sample.jpg',
+      brand: req.body.brand,
+      category: req.body.category,
+      countInStock: req.body.countInStock,
+      description: req.body.description,
+      image: req.body.image,
       images: [],
-      name: 'sample name ' + Date.now(),
-      numReviews: 0,
-      price: 0,
-      rating: 0,
-      slug: 'sample-slug-' + Date.now(),
-      
-
+      name: req.body.name,
+      numReviews: req.body.numReviews,
+      price: req.body.price,
+      rating: req.body.rating,
+      slug: req.body.slug,
     });
-    try{
+    
     const product = await newProduct.save();
     res.send({ message: 'Product Created', product });    
     } catch (error) {
-      console.error(error);
-      res.status(500).send({message: 'Error creating new product'});
+      console.error('Error creating product:', error);
+      res.status(500).send({message: 'Error creating product', error: error.message});
     }
   })
 );
