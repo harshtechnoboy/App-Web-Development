@@ -103,7 +103,7 @@ function ProductScreen() {
       dispatch({
         type: 'CREATE_SUCCESS',
       });
-      toast.success('Review submitted successfully');
+      toast.success('Review has been published');
       product.reviews.unshift(data.review);
       product.numReviews = data.numReviews;
       product.rating = data.rating;
@@ -145,7 +145,7 @@ function ProductScreen() {
                 numReviews={product.numReviews}
               ></Rating>
             </ListGroup.Item>
-            <ListGroup.Item>Pirce : ${product.price}</ListGroup.Item>
+            <ListGroup.Item>Price : €{product.price}</ListGroup.Item>
             <ListGroup.Item>
               <Row xs={1} md={2} className="g-2">
                 {[product.image, ...product.images].map((x) => (
@@ -177,7 +177,7 @@ function ProductScreen() {
                 <ListGroup.Item>
                   <Row>
                     <Col>Price:</Col>
-                    <Col>${product.price}</Col>
+                    <Col>€{product.price}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -227,7 +227,7 @@ function ProductScreen() {
         <div className="my-3">
           {userInfo ? (
             <form onSubmit={submitHandler}>
-              <h2>Write a customer review</h2>
+              <h2>Write a review</h2>
               <Form.Group className="mb-3" controlId="rating">
                 <Form.Label>Rating</Form.Label>
                 <Form.Select
@@ -240,7 +240,7 @@ function ProductScreen() {
                   <option value="2">2- Fair</option>
                   <option value="3">3- Good</option>
                   <option value="4">4- Very good</option>
-                  <option value="5">5- Excelent</option>
+                  <option value="5">5- Excellent</option>
                 </Form.Select>
               </Form.Group>
               <FloatingLabel
@@ -250,7 +250,7 @@ function ProductScreen() {
               >
                 <Form.Control
                   as="textarea"
-                  placeholder="Leave a comment here"
+                  placeholder="Write your comments here"
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                 />

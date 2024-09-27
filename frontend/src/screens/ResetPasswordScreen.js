@@ -37,7 +37,7 @@ export default function ResetPasswordScreen() {
         token,
       });
       navigate('/signin');
-      toast.success('Password updated successfully');
+      toast.success('Password has been changed');
     } catch (err) {
       toast.error(getError(err));
     }

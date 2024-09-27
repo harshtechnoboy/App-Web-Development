@@ -52,7 +52,7 @@ userRouter.put(
         token: generateToken(updatedUser),
       });
     } else {
-      res.status(404).send({ message: 'User not found' });
+      res.status(404).send({ message: 'User Not Found' });
     }
   })
 );
@@ -80,7 +80,7 @@ userRouter.post(
             to: `${user.name} <${user.email}>`,
             subject: `Reset Password`,
             html: ` 
-             <p>Please Click the following link to reset your password:</p> 
+             <p>Please click on this link to reset your password:</p> 
              <a href="${baseUrl()}/reset-password/${token}"}>Reset Password</a>
              `,
           },
@@ -89,9 +89,9 @@ userRouter.post(
             console.log(body);
           }
         );
-      res.send({ message: 'We sent reset password link to your email.' });
+      res.send({ message: 'We have sent a link to reset your password via email' });
     } else {
-      res.status(404).send({ message: 'User not found' });
+      res.status(404).send({ message: 'User Not Found' });
     }
   })
 );
@@ -109,11 +109,11 @@ userRouter.post(
             user.password = bcrypt.hashSync(req.body.password, 8);
             await user.save();
             res.send({
-              message: 'Password reseted successfully',
+              message: 'Password has been changed',
             });
           }
         } else {
-          res.status(404).send({ message: 'User not found' });
+          res.status(404).send({ message: 'User Not Found' });
         }
       }
     });
@@ -145,12 +145,12 @@ userRouter.delete(
   expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id);
     if (user) {
-      if (user.email === 'admin@example.com') {
-        res.status(400).send({ message: 'Can Not Delete Admin User' });
+      if (user.email === 'sneakervault.de@gmail.com') {
+        res.status(400).send({ message: 'Cannot delete admin user' });
         return;
       }
       await user.remove();
-      res.send({ message: 'User Deleted' });
+      res.send({ message: 'User has been removed' });
     } else {
       res.status(404).send({ message: 'User Not Found' });
     }

@@ -33,7 +33,6 @@ import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
 import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
-import MapScreen from './screens/MapScreen';
 import ForgetPasswordScreen from './screens/ForgetPasswordScreen';
 import ResetPasswordScreen from './screens/ResetPasswordScreen';
 
@@ -170,114 +169,36 @@ function App() {
         <main>
           <Container className="mt-3">
             <Routes>
+              {/* Product and Cart Routes */}
               <Route path="/product/:slug" element={<ProductScreen />} />
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/search" element={<SearchScreen />} />
+              {/* User Authentication Routes */}
               <Route path="/signin" element={<SigninScreen />} />
               <Route path="/signup" element={<SignupScreen />} />
-              <Route
-                path="/forget-password"
-                element={<ForgetPasswordScreen />}
-              />
-              <Route
-                path="/reset-password/:token"
-                element={<ResetPasswordScreen />}
-              />
-
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <ProfileScreen />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/map"
-                element={
-                  <ProtectedRoute>
-                    <MapScreen />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/placeorder" element={<PlaceOrderScreen />} />
-              <Route
-                path="/order/:id"
-                element={
-                  <ProtectedRoute>
-                    <OrderScreen />
-                  </ProtectedRoute>
-                }
-              ></Route>
-              <Route
-                path="/orderhistory"
-                element={
-                  <ProtectedRoute>
-                    <OrderHistoryScreen />
-                  </ProtectedRoute>
-                }
-              ></Route>
-              <Route
-                path="/shipping"
-                element={<ShippingAddressScreen />}
-              ></Route>
+              <Route path="/forget-password" element={<ForgetPasswordScreen />} />
+              <Route path="/reset-password/:token" element={<ResetPasswordScreen />} />
+              {/* Protected User Routes */}
+              <Route path="/profile" element={<ProtectedRoute> <ProfileScreen /> </ProtectedRoute>} ></Route>
+              <Route path="/placeorder" element={<PlaceOrderScreen />} ></Route>
+              <Route path="/order/:id" element={<ProtectedRoute> <OrderScreen /> </ProtectedRoute>} ></Route>
+              <Route path="/orderhistory" element={<ProtectedRoute> <OrderHistoryScreen /> </ProtectedRoute>} ></Route>
+              <Route path="/shipping" element={<ShippingAddressScreen />} ></Route>
               <Route path="/payment" element={<PaymentMethodScreen />}></Route>
               {/* Admin Routes */}
-              <Route
-                path="/admin/dashboard"
-                element={
-                  <AdminRoute>
-                    <DashboardScreen />
-                  </AdminRoute>
-                }
-              ></Route>
-              <Route
-                path="/admin/orders"
-                element={
-                  <AdminRoute>
-                    <OrderListScreen />
-                  </AdminRoute>
-                }
-              ></Route>
-              <Route
-                path="/admin/users"
-                element={
-                  <AdminRoute>
-                    <UserListScreen />
-                  </AdminRoute>
-                }
-              ></Route>
-              <Route
-                path="/admin/products"
-                element={
-                  <AdminRoute>
-                    <ProductListScreen />
-                  </AdminRoute>
-                }
-              ></Route>
-              <Route
-                path="/admin/product/:id"
-                element={
-                  <AdminRoute>
-                    <ProductEditScreen />
-                  </AdminRoute>
-                }
-              ></Route>
-              <Route
-                path="/admin/user/:id"
-                element={
-                  <AdminRoute>
-                    <UserEditScreen />
-                  </AdminRoute>
-                }
-              ></Route>
-
+              <Route path="/admin/dashboard" element={<AdminRoute> <DashboardScreen /> </AdminRoute>} ></Route>
+              <Route path="/admin/orders" element={<AdminRoute> <OrderListScreen /> </AdminRoute>} ></Route>
+              <Route path="/admin/users" element={<AdminRoute> <UserListScreen /> </AdminRoute>} ></Route>
+              <Route path="/admin/products" element={<AdminRoute> <ProductListScreen /> </AdminRoute>} ></Route>
+              <Route path="/admin/product/:id" element={<AdminRoute> <ProductEditScreen /> </AdminRoute>} ></Route>
+              <Route path="/admin/user/:id" element={<AdminRoute> <UserEditScreen /> </AdminRoute>} ></Route>
+              {/* Home Routes */}
               <Route path="/" element={<HomeScreen />} />
             </Routes>
           </Container>
         </main>
         <footer>
-          <div className="text-center">@2024 Sneaker Vault, All rights reserved.</div>
+          <div className="text-center">© 2024 Sneaker Vault</div>
         </footer>
       </div>
     </BrowserRouter>
