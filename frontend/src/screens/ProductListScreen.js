@@ -101,7 +101,19 @@ export default function ProductListScreen() {
         dispatch({ type: 'CREATE_REQUEST' });
         const { data } = await axios.post(
           '/api/products',
-          {},
+          {
+            brand: 'sample brand',
+            category: 'sample category',
+            countInStock: 0,
+            description: 'sample description',
+            image: '/images/sample.jpg',
+            images: [],
+            name: 'sample name' + Date.now(),
+            numReviews: 0,
+            price: 0,
+            rating: 0,
+            slug: 'sample-slug-' + Date.now(),
+          },
           {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           }
