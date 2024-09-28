@@ -44,7 +44,6 @@ function HomeScreen() {
       <Helmet>
         <title>Sneaker Vault</title>
       </Helmet>
-      <h1>Trending Now</h1>
       <div className="products">
         {loading ? (
           <LoadingBox />

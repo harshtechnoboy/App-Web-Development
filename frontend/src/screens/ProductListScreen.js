@@ -105,7 +105,7 @@ export default function ProductListScreen() {
             brand: 'sample brand',
             category: 'sample category',
             countInStock: 0,
-            description: 'sample description',
+            description: 'Upper material: , Inner material: , Outer: ',
             image: '/images/sample.jpg',
             images: [],
             name: 'sample name' + Date.now(),

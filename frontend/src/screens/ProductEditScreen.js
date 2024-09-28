@@ -152,7 +152,7 @@ export default function ProductEditScreen() {
     console.log(images);
     console.log(images.filter((x) => x !== fileName));
     setImages(images.filter((x) => x !== fileName));
-    toast.success('Image has been removed, click on Update to save changes');
+    toast.success('Image has been removed');
   };
   return (
     <Container className="small-container">
