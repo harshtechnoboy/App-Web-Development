@@ -7,6 +7,10 @@ import { isAuth, isAdmin, generateToken, baseUrl, mailgun } from '../utils.js';
 
 const userRouter = express.Router();
 
+userRouter.get('/test-env', (req, res) => {
+  res.send({ secret: process.env.JWT_SECRET || 'Not set' });
+});
+
 userRouter.get(
   '/',
   isAuth,
