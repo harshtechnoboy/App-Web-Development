@@ -12,7 +12,7 @@ userRouter.get('/test-email', expressAsyncHandler(async (req, res) => {
     .messages()
     .send(
       {
-        from: 'Sneaker Vault <sneakervault.de@gmail.com>',
+        from: 'Sneaker Vault <mailgun@sandboxf8220cbbd7d940c7ae2c317751d0cbde.mailgun.org>',
         to: 'harshdani6@gmail.com',
         subject: 'Test Email',
         text: 'This is a test email from Sneaker Vault.',
