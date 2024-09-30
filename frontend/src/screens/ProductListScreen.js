@@ -96,7 +96,7 @@ export default function ProductListScreen() {
   }, [page, userInfo, successDelete]);
 
   const createHandler = async () => {
-    if (window.confirm('Confirm to create product')) {
+    if (window.confirm('Are you sure you want to create a new product?')) {
       try {
         dispatch({ type: 'CREATE_REQUEST' });
         const { data } = await axios.post(
@@ -118,7 +118,7 @@ export default function ProductListScreen() {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           }
         );
-        toast.success('Product Created');
+        toast.success('Product has been created');
         dispatch({ type: 'CREATE_SUCCESS' });
         navigate(`/admin/product/${data.product._id}`);
       } catch (err) {
@@ -131,12 +131,12 @@ export default function ProductListScreen() {
   };
 
   const deleteHandler = async (product) => {
-    if (window.confirm('Confirm to delete product')) {
+    if (window.confirm('Are you sure you want to delete this product')) {
       try {
         await axios.delete(`/api/products/${product._id}`, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
-        toast.success('Product Removed');
+        toast.success('Product has been deleted');
         dispatch({ type: 'DELETE_SUCCESS' });
       } catch (err) {
         toast.error(getError(error));

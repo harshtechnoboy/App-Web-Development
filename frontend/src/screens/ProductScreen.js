@@ -88,7 +88,7 @@ function ProductScreen() {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (!comment || !rating) {
-      toast.error('Please leave a review and rating');
+      toast.error('Please give a rating and write a review');
       return;
     }
     try {
@@ -103,7 +103,7 @@ function ProductScreen() {
       dispatch({
         type: 'CREATE_SUCCESS',
       });
-      toast.success('Review Published');
+      toast.success('Review has been published');
       product.reviews.unshift(data.review);
       product.numReviews = data.numReviews;
       product.rating = data.rating;
@@ -236,11 +236,11 @@ function ProductScreen() {
                   onChange={(e) => setRating(e.target.value)}
                 >
                   <option value="">Select...</option>
-                  <option value="1">1- Poor</option>
-                  <option value="2">2- Fair</option>
-                  <option value="3">3- Good</option>
-                  <option value="4">4- Very good</option>
-                  <option value="5">5- Excellent</option>
+                  <option value="1">1 - Poor</option>
+                  <option value="2">2 - Fair</option>
+                  <option value="3">3 - Good</option>
+                  <option value="4">4 - Very good</option>
+                  <option value="5">5 - Excellent</option>
                 </Form.Select>
               </Form.Group>
               <FloatingLabel

@@ -70,13 +70,13 @@ export default function OrderListScreen() {
   }, [userInfo, successDelete]);
 
   const deleteHandler = async (order) => {
-    if (window.confirm('Confirm to delete order')) {
+    if (window.confirm('Are you sure you want to delete this order?')) {
       try {
         dispatch({ type: 'DELETE_REQUEST' });
         await axios.delete(`/api/orders/${order._id}`, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
-        toast.success('Order Removed');
+        toast.success('Order has been deleted');
         dispatch({ type: 'DELETE_SUCCESS' });
       } catch (err) {
         toast.error(getError(error));
@@ -105,7 +105,7 @@ export default function OrderListScreen() {
               <th>ID</th>
               <th>USER</th>
               <th>DATE</th>
-              <th>TOTAL</th>
+              <th>AMOUNT</th>
               <th>PAID</th>
               <th>DELIVERED</th>
               <th>ACTIONS</th>

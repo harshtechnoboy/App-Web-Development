@@ -32,17 +32,17 @@ export default function SignupScreen() {
     e.preventDefault();
 
     if (!isValidEmail(email)) {
-      toast.error('Please enter an email with a valid ending like ".com",".de"');
+      toast.error('Please enter a valid email address');
       return;
     }
 
     if (password.length < 8) {
-      toast.error('Password must have at least 8 characters');
+      toast.error('Password length must be at least 8 characters');
       return;
     }
 
     if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
+      toast.error('Passwords dont match');
       return;
     }
     try {
@@ -106,7 +106,7 @@ export default function SignupScreen() {
         </div>
         <div className="mb-3">
           Already have an account?{' '}
-          <Link to={`/signin?redirect=${redirect}`}>Sign-In</Link>
+          <Link to={`/signin?redirect=${redirect}`}>Sign In</Link>
         </div>
       </Form>
     </Container>

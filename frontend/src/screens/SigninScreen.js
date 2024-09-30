@@ -68,11 +68,11 @@ export default function SigninScreen() {
           <Button type="submit">Sign In</Button>
         </div>
         <div className="mb-3">
-          New Customer?{' '}
-          <Link to={`/signup?redirect=${redirect}`}>Create Account</Link>
+          Dont have an account?{' '}
+          <Link to={`/signup?redirect=${redirect}`}>Sign Up</Link>
         </div>
         <div className="mb-3">
-          Forgot Password? <Link to={`/forget-password`}>Reset Password</Link>
+          <Link to={`/forget-password`}>Forget Password?</Link>
         </div>
       </Form>
     </Container>

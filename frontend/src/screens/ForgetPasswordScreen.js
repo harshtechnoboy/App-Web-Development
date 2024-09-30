@@ -38,9 +38,9 @@ export default function ForgetPasswordScreen() {
   return (
     <Container className="small-container">
       <Helmet>
-        <title>Forgot Password</title>
+        <title>Forget Password</title>
       </Helmet>
-      <h1 className="my-3">Forgot Password</h1>
+      <h1 className="my-3">Forget Password</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email</Form.Label>

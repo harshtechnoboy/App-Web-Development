@@ -114,7 +114,7 @@ export default function ProductEditScreen() {
       dispatch({
         type: 'UPDATE_SUCCESS',
       });
-      toast.success('Product Updated');
+      toast.success('Product has been updated');
       navigate('/admin/products');
     } catch (err) {
       toast.error(getError(err));
@@ -140,7 +140,7 @@ export default function ProductEditScreen() {
       } else {
         setImage(data.secure_url);
       }
-      toast.success('Image Uploaded');
+      toast.success('Image has been uploaded');
     } catch (err) {
       toast.error(getError(err));
       dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
@@ -151,7 +151,7 @@ export default function ProductEditScreen() {
     console.log(images);
     console.log(images.filter((x) => x !== fileName));
     setImages(images.filter((x) => x !== fileName));
-    toast.success('Image Removed');
+    toast.success('Image has been removed');
   };
   return (
     <Container className="small-container">

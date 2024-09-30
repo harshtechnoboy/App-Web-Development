@@ -7,28 +7,6 @@ import { isAuth, isAdmin, generateToken, baseUrl, mailgun } from '../utils.js';
 
 const userRouter = express.Router();
 
-userRouter.post('/test-email', expressAsyncHandler(async (req, res) => {
-  mailgun()
-    .messages()
-    .send(
-      {
-        from: 'Sneaker Vault <mailgun@sandboxf8220cbbd7d940c7ae2c317751d0cbde.mailgun.org>',
-        to: 'harshdani6@gmail.com',
-        subject: 'Test Email',
-        text: 'This is a test email from Sneaker Vault.',
-      },
-      (error, body) => {
-        if (error) {
-          console.log('Mailgun Error:', error);
-          res.status(500).send({ message: 'Mailgun Error', error });
-        } else {
-          console.log('Mailgun Success:', body);
-          res.send({ message: 'Email sent successfully', body });
-        }
-      }
-    );
-}));
-
 userRouter.get(
   '/',
   isAuth,
@@ -97,12 +75,16 @@ userRouter.post(
         .messages()
         .send(
           {
-            from: 'Sneaker Vault <sneakervault@gmail.com>',
+            from: 'Sneaker Vault <sneakervault.de@gmail.com>',
             to: `${user.name} <${user.email}>`,
-            subject: `Reset Password`,
-            html: ` 
-             <p>Use this link to reset password:</p> 
+            subject: `Reset your password`,
+            html: `
+             <p>Hello ${user.name},</p>
+             <p>We received a request to reset the password for your account.</p>
+             <p>To reset your password, click on the button below:</p> 
              <a href="${baseUrl()}/reset-password/${token}">Reset Password</a>
+             <p>Or copy and paste the URL into your browser:</p>
+             <a href="${baseUrl()}/reset-password/${token}"</a>
              `,
           },
           (error, body) => {
@@ -110,7 +92,7 @@ userRouter.post(
             console.log(body);
           }
         );
-      res.send({ message: 'Password reset link sent to email' });
+      res.send({ message: 'A link to reset the password has been sent to your email' });
     } else {
       res.status(404).send({ message: 'User Not Found' });
     }
@@ -167,7 +149,7 @@ userRouter.delete(
     const user = await User.findById(req.params.id);
     if (user) {
       if (user.email === 'sneakervault.de@gmail.com') {
-        res.status(400).send({ message: 'Cannot delete admin user' });
+        res.status(400).send({ message: 'Cannot Delete Admin' });
         return;
       }
       await user.remove();
@@ -193,7 +175,7 @@ userRouter.post(
         return;
       }
     }
-    res.status(401).send({ message: 'Invalid email or password' });
+    res.status(401).send({ message: 'Invalid Email/Password' });
   })
 );
 

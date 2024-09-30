@@ -28,7 +28,7 @@ export default function ResetPasswordScreen() {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
+      toast.error('Passwords dont match');
       return;
     }
     try {
@@ -37,7 +37,7 @@ export default function ResetPasswordScreen() {
         token,
       });
       navigate('/signin');
-      toast.success('Password Changed');
+      toast.success('Password has been changed');
     } catch (err) {
       toast.error(getError(err));
     }

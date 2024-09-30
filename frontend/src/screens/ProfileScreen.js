@@ -52,7 +52,7 @@ export default function ProfileScreen() {
       });
       ctxDispatch({ type: 'USER_SIGNIN', payload: data });
       localStorage.setItem('userInfo', JSON.stringify(data));
-      toast.success('User Updated');
+      toast.success('User has been updated');
     } catch (err) {
       dispatch({
         type: 'FETCH_FAIL',
@@ -86,14 +86,14 @@ export default function ProfileScreen() {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="password">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>New Password</Form.Label>
           <Form.Control
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="password">
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label>Confirm New Password</Form.Label>
           <Form.Control
             type="password"
             onChange={(e) => setConfirmPassword(e.target.value)}

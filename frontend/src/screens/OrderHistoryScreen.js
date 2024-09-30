@@ -66,7 +66,7 @@ export default function OrderHistoryScreen() {
             <tr>
               <th>ID</th>
               <th>DATE</th>
-              <th>TOTAL</th>
+              <th>AMOUNT</th>
               <th>PAID</th>
               <th>DELIVERED</th>
               <th>ACTIONS</th>
