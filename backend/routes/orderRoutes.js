@@ -142,7 +142,7 @@ orderRouter.put(
         .messages()
         .send(
           {
-            from: 'Sneaker Vault <mailgun@sandboxf8220cbbd7d940c7ae2c317751d0cbde.mailgun.org>',
+            from: 'Sneaker Vault <sneakervault@mg.yourdomain.com>',
             to: `${order.user.name} <${order.user.email}>`,
             subject: `New order ${order._id}`,
             html: payOrderEmailTemplate(order),

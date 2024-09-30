@@ -79,7 +79,7 @@ userRouter.post(
         .messages()
         .send(
           {
-            from: 'Sneaker Vault <mailgun@sandboxf8220cbbd7d940c7ae2c317751d0cbde.mailgun.org>',
+            from: 'Sneaker Vault <sneakervault@mg.yourdomain.com>',
             to: `${user.name} <${user.email}>`,
             subject: `Reset Password`,
             html: ` 
