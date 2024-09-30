@@ -7,7 +7,7 @@ import { isAuth, isAdmin, generateToken, baseUrl, mailgun } from '../utils.js';
 
 const userRouter = express.Router();
 
-userRouter.get('/test-email', expressAsyncHandler(async (req, res) => {
+userRouter.post('/test-email', expressAsyncHandler(async (req, res) => {
   mailgun()
     .messages()
     .send(
@@ -98,7 +98,7 @@ userRouter.post(
         .messages()
         .send(
           {
-            from: 'Sneaker Vault <sneakervault.de@gmail.com>',
+            from: 'Sneaker Vault <>',
             to: `${user.name} <${user.email}>`,
             subject: `Reset Password`,
             html: ` 
