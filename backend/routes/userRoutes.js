@@ -7,9 +7,28 @@ import { isAuth, isAdmin, generateToken, baseUrl, mailgun } from '../utils.js';
 
 const userRouter = express.Router();
 
-userRouter.get('/test-env', (req, res) => {
-  res.send({ secret: process.env.JWT_SECRET || 'Not set' });
-});
+userRouter.get('/test-email', expressAsyncHandler(async (req, res) => {
+  mailgun()
+    .messages()
+    .send(
+      {
+        from: 'Sneaker Vault <sneakervault.de@gmail.com>',
+        to: 'harshdani6@gmail.com',
+        subject: 'Test Email',
+        text: 'This is a test email from Sneaker Vault.',
+      },
+      (error, body) => {
+        if (error) {
+          console.log('Mailgun Error:', error);
+          res.status(500).send({ message: 'Mailgun Error', error });
+        } else {
+          console.log('Mailgun Success:', body);
+          res.send({ message: 'Email sent successfully', body });
+        }
+      }
+    );
+}));
+
 
 userRouter.get(
   '/',
@@ -79,7 +98,7 @@ userRouter.post(
         .messages()
         .send(
           {
-            from: 'Sneaker Vault <sneakervault@mg.yourdomain.com>',
+            from: 'Sneaker Vault <sneakervault.de@gmail.com>',
             to: `${user.name} <${user.email}>`,
             subject: `Reset Password`,
             html: ` 
