@@ -250,7 +250,7 @@ function ProductScreen() {
               >
                 <Form.Control
                   as="textarea"
-                  placeholder="Write your review here"
+                  placeholder="Write a review"
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                 />

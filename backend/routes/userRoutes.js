@@ -7,29 +7,6 @@ import { isAuth, isAdmin, generateToken, baseUrl, mailgun } from '../utils.js';
 
 const userRouter = express.Router();
 
-userRouter.post('/test-email', expressAsyncHandler(async (req, res) => {
-  mailgun()
-    .messages()
-    .send(
-      {
-        from: 'Sneaker Vault <mailgun@sandboxf8220cbbd7d940c7ae2c317751d0cbde.mailgun.org>',
-        to: 'harshdani6@gmail.com',
-        subject: 'Test Email',
-        text: 'This is a test email from Sneaker Vault.',
-      },
-      (error, body) => {
-        if (error) {
-          console.log('Mailgun Error:', error);
-          res.status(500).send({ message: 'Mailgun Error', error });
-        } else {
-          console.log('Mailgun Success:', body);
-          res.send({ message: 'Email sent successfully', body });
-        }
-      }
-    );
-}));
-
-
 userRouter.get(
   '/',
   isAuth,
@@ -98,11 +75,11 @@ userRouter.post(
         .messages()
         .send(
           {
-            from: 'Sneaker Vault <>',
+            from: 'Sneaker Vault <sneakervault@gmail.com>',
             to: `${user.name} <${user.email}>`,
             subject: `Reset Password`,
             html: ` 
-             <p>Click on this link to reset your password:</p> 
+             <p>Use this link to reset password:</p> 
              <a href="${baseUrl()}/reset-password/${token}">Reset Password</a>
              `,
           },
@@ -111,7 +88,7 @@ userRouter.post(
             console.log(body);
           }
         );
-      res.send({ message: 'A password reset link has been sent to email' });
+      res.send({ message: 'Password reset link sent to email' });
     } else {
       res.status(404).send({ message: 'User Not Found' });
     }
