@@ -80,7 +80,7 @@ userRouter.post(
             subject: `Reset Password`,
             html: ` 
              <p>Click on this link to reset your password:</p> 
-             <a href="${baseUrl()}/reset-password/${token}"}>Reset Password</a>
+             <a href="${baseUrl()}/reset-password/${token}">Reset Password</a>
              `,
           },
           (error, body) => {
