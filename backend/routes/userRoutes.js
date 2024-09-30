@@ -7,6 +7,28 @@ import { isAuth, isAdmin, generateToken, baseUrl, mailgun } from '../utils.js';
 
 const userRouter = express.Router();
 
+userRouter.post('/test-email', expressAsyncHandler(async (req, res) => {
+  mailgun()
+    .messages()
+    .send(
+      {
+        from: 'Sneaker Vault <mailgun@sandboxf8220cbbd7d940c7ae2c317751d0cbde.mailgun.org>',
+        to: 'harshdani6@gmail.com',
+        subject: 'Test Email',
+        text: 'This is a test email from Sneaker Vault.',
+      },
+      (error, body) => {
+        if (error) {
+          console.log('Mailgun Error:', error);
+          res.status(500).send({ message: 'Mailgun Error', error });
+        } else {
+          console.log('Mailgun Success:', body);
+          res.send({ message: 'Email sent successfully', body });
+        }
+      }
+    );
+}));
+
 userRouter.get(
   '/',
   isAuth,
