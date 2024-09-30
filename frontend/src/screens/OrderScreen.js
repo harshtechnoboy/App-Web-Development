@@ -180,7 +180,7 @@ export default function OrderScreen() {
         }
       );
       dispatch({ type: 'DELIVER_SUCCESS', payload: data });
-      toast.success('Order has been delivered');
+      toast.success('Order Delivered');
     } catch (err) {
       toast.error(getError(err));
       dispatch({ type: 'DELIVER_FAIL' });
@@ -311,7 +311,7 @@ export default function OrderScreen() {
                     {loadingDeliver && <LoadingBox></LoadingBox>}
                     <div className="d-grid">
                       <Button type="button" onClick={deliverOrderHandler}>
-                        Mark Order as Delivered
+                        Mark Order Delivered
                       </Button>
                     </div>
                   </ListGroup.Item>

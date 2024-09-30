@@ -16,22 +16,22 @@ productRouter.post(
   isAdmin,
   expressAsyncHandler(async (req, res) => {
     const newProduct = new Product({
-      brand: req.body.brand,
-      category: req.body.category,
-      countInStock: req.body.countInStock,
-      description: req.body.description,
+      name: req.body.name,
+      slug: req.body.slug,
+      price: req.body.price,
       image: req.body.image,
       images: [],
-      name: req.body.name,
-      numReviews: req.body.numReviews,
-      price: req.body.price,
+      category: req.body.category,
+      brand: req.body.brand,
+      countInStock: req.body.countInStock,
+      description: req.body.description,
       rating: req.body.rating,
-      slug: req.body.slug,
+      numReviews: req.body.numReviews,
     });
     
     const product = await newProduct.save();
     res.send({ message: 'Product Created', product });
-   })
+  })
 );
 
 productRouter.put(
@@ -42,16 +42,15 @@ productRouter.put(
     const productId = req.params.id;
     const product = await Product.findById(productId);
     if (product) {
-      product.brand = req.body.brand;
-      product.category = req.body.category;
-      product.countInStock = req.body.countInStock;
-      product.description = req.body.description;
+      product.name = req.body.name;
+      product.slug = req.body.slug;
+      product.price = req.body.price;
       product.image = req.body.image;
       product.images = req.body.images;
-      product.name = req.body.name;
-      product.price = req.body.price;
-      product.slug = req.body.slug;
-
+      product.category = req.body.category;
+      product.brand = req.body.brand;
+      product.countInStock = req.body.countInStock;
+      product.description = req.body.description;
       await product.save();
       res.send({ message: 'Product Updated' });
     } else {
@@ -85,7 +84,7 @@ productRouter.post(
       if (product.reviews.find((x) => x.name === req.user.name)) {
         return res
           .status(400)
-          .send({ message: 'You already submitted a review' });
+          .send({ message: 'You have already submitted a review' });
       }
 
       const review = {
@@ -229,6 +228,7 @@ productRouter.get('/slug/:slug', async (req, res) => {
     res.status(404).send({ message: 'Product Not Found' });
   }
 });
+
 productRouter.get('/:id', async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {

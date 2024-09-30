@@ -59,11 +59,10 @@ export default function ProductEditScreen() {
   const [price, setPrice] = useState('');
   const [image, setImage] = useState('');
   const [images, setImages] = useState([]);
-  const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
-  const [description, setDescription] = useState('');
+  const [brand, setBrand] = useState('');
   const [countInStock, setCountInStock] = useState('');
-  
+  const [description, setDescription] = useState('');  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,8 +76,8 @@ export default function ProductEditScreen() {
         setImages(data.images);
         setCategory(data.category);
         setBrand(data.brand);
-        setDescription(data.description);
         setCountInStock(data.countInStock);
+        setDescription(data.description);
         dispatch({ type: 'FETCH_SUCCESS' });
       } catch (err) {
         dispatch({
@@ -97,16 +96,16 @@ export default function ProductEditScreen() {
       await axios.put(
         `/api/products/${productId}`,
         {
-          brand,
-          category,
-          countInStock,
-          description,
           _id: productId,
+          name,
+          slug,
+          price,
           image,
           images,
-          name,
-          price,
-          slug,
+          category,
+          brand,
+          countInStock,
+          description,
         },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -115,7 +114,7 @@ export default function ProductEditScreen() {
       dispatch({
         type: 'UPDATE_SUCCESS',
       });
-      toast.success('Product has been updated');
+      toast.success('Product Updated');
       navigate('/admin/products');
     } catch (err) {
       toast.error(getError(err));
@@ -132,7 +131,7 @@ export default function ProductEditScreen() {
         headers: {
           'Content-Type': 'multipart/form-data',
           authorization: `Bearer ${userInfo.token}`,
-        },
+        }, 
       });
       dispatch({ type: 'UPLOAD_SUCCESS' });
 
@@ -141,7 +140,7 @@ export default function ProductEditScreen() {
       } else {
         setImage(data.secure_url);
       }
-      toast.success('Image has been uploaded, click on update to save changes');
+      toast.success('Image Uploaded');
     } catch (err) {
       toast.error(getError(err));
       dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
@@ -152,7 +151,7 @@ export default function ProductEditScreen() {
     console.log(images);
     console.log(images.filter((x) => x !== fileName));
     setImages(images.filter((x) => x !== fileName));
-    toast.success('Image has been removed');
+    toast.success('Image Removed');
   };
   return (
     <Container className="small-container">

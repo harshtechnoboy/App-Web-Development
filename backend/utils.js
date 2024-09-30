@@ -6,7 +6,7 @@ export const baseUrl = () =>
     ? process.env.BASE_URL
     : process.env.NODE_ENV !== 'production'
     ? 'http://localhost:3000'
-    : 'https://yourdomain.com';
+    : 'https://sneakervault.onrender.com';
 
 export const generateToken = (user) => {
   return jwt.sign(
@@ -26,7 +26,7 @@ export const generateToken = (user) => {
 export const isAuth = (req, res, next) => {
   const authorization = req.headers.authorization;
   if (authorization) {
-    const token = authorization.slice(7, authorization.length); // Bearer XXXXXX
+    const token = authorization.slice(7, authorization.length);
     jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
       if (err) {
         res.status(401).send({ message: 'Invalid Token' });
@@ -55,10 +55,10 @@ export const mailgun = () =>
   });
 
 export const payOrderEmailTemplate = (order) => {
-  return `<h1>Thanks for shopping with us</h1>
+  return `<h1>Thank you for shopping with us</h1>
   <p>
   Hi ${order.user.name},</p>
-  <p>We have finished processing your order.</p>
+  <p>We have finished processing your order</p>
   <h2>[Order ${order._id}] (${order.createdAt.toString().substring(0, 10)})</h2>
   <table>
   <thead>

@@ -69,18 +69,17 @@ userRouter.post(
       user.resetToken = token;
       await user.save();
 
-      //reset link
       console.log(`${baseUrl()}/reset-password/${token}`);
 
       mailgun()
         .messages()
         .send(
           {
-            from: 'Sneaker Vault <sneakervault.de@gmail.com>',
+            from: 'Sneaker Vault <sandboxf8220cbbd7d940c7ae2c317751d0cbde.mailgun.org>',
             to: `${user.name} <${user.email}>`,
             subject: `Reset Password`,
             html: ` 
-             <p>Please click on this link to reset your password:</p> 
+             <p>Click on this link to reset your password:</p> 
              <a href="${baseUrl()}/reset-password/${token}"}>Reset Password</a>
              `,
           },
@@ -89,7 +88,7 @@ userRouter.post(
             console.log(body);
           }
         );
-      res.send({ message: 'We have sent a link to reset your password via email' });
+      res.send({ message: 'A password reset link has been sent to email' });
     } else {
       res.status(404).send({ message: 'User Not Found' });
     }
@@ -109,7 +108,7 @@ userRouter.post(
             user.password = bcrypt.hashSync(req.body.password, 8);
             await user.save();
             res.send({
-              message: 'Password has been changed',
+              message: 'Password Changed',
             });
           }
         } else {
@@ -131,7 +130,7 @@ userRouter.put(
       user.email = req.body.email || user.email;
       user.isAdmin = Boolean(req.body.isAdmin);
       const updatedUser = await user.save();
-      res.send({ message: 'User has been updated', user: updatedUser });
+      res.send({ message: 'User Updated', user: updatedUser });
     } else {
       res.status(404).send({ message: 'User Not Found' });
     }
@@ -150,7 +149,7 @@ userRouter.delete(
         return;
       }
       await user.remove();
-      res.send({ message: 'User has been removed' });
+      res.send({ message: 'User Removed' });
     } else {
       res.status(404).send({ message: 'User Not Found' });
     }

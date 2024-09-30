@@ -103,7 +103,7 @@ function ProductScreen() {
       dispatch({
         type: 'CREATE_SUCCESS',
       });
-      toast.success('Review has been published');
+      toast.success('Review Published');
       product.reviews.unshift(data.review);
       product.numReviews = data.numReviews;
       product.rating = data.rating;
@@ -250,7 +250,7 @@ function ProductScreen() {
               >
                 <Form.Control
                   as="textarea"
-                  placeholder="Write your comments here"
+                  placeholder="Write your review here"
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                 />

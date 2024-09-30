@@ -52,7 +52,7 @@ export default function ProfileScreen() {
       });
       ctxDispatch({ type: 'USER_SIGNIN', payload: data });
       localStorage.setItem('userInfo', JSON.stringify(data));
-      toast.success('User has been updated');
+      toast.success('User Updated');
     } catch (err) {
       dispatch({
         type: 'FETCH_FAIL',

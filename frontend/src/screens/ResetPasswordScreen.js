@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -7,7 +8,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Store } from '../Store';
 import { getError } from '../utils';
-import axios from 'axios';
 
 export default function ResetPasswordScreen() {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ export default function ResetPasswordScreen() {
         token,
       });
       navigate('/signin');
-      toast.success('Password has been changed');
+      toast.success('Password Changed');
     } catch (err) {
       toast.error(getError(err));
     }

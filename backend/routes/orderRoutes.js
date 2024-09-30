@@ -22,10 +22,10 @@ orderRouter.post(
   isAuth,
   expressAsyncHandler(async (req, res) => {
     const newOrder = new Order({
-      itemsPrice: req.body.itemsPrice,
       orderItems: req.body.orderItems.map((x) => ({ ...x, product: x._id })),
-      paymentMethod: req.body.paymentMethod,
       shippingAddress: req.body.shippingAddress,
+      paymentMethod: req.body.paymentMethod,
+      itemsPrice: req.body.itemsPrice,
       shippingPrice: req.body.shippingPrice,
       taxPrice: req.body.taxPrice,
       totalPrice: req.body.totalPrice,
@@ -142,7 +142,7 @@ orderRouter.put(
         .messages()
         .send(
           {
-            from: 'Sneaker Vault <sneakervault.de@gmail.com>',
+            from: 'Sneaker Vault <sandboxf8220cbbd7d940c7ae2c317751d0cbde.mailgun.org>',
             to: `${order.user.name} <${order.user.email}>`,
             subject: `New order ${order._id}`,
             html: payOrderEmailTemplate(order),
@@ -171,7 +171,7 @@ orderRouter.delete(
     const order = await Order.findById(req.params.id);
     if (order) {
       await order.remove();
-      res.send({ message: 'Order Deleted' });
+      res.send({ message: 'Order Removed' });
     } else {
       res.status(404).send({ message: 'Order Not Found' });
     }
