@@ -144,7 +144,7 @@ orderRouter.put(
           {
             from: 'Sneaker Vault <sneakervault.de@gmail.com>',
             to: `${order.user.name} <${order.user.email}>`,
-            subject: `New order ${order._id}`,
+            subject: `Update regarding your order`,
             html: payOrderEmailTemplate(order),
           },
           (error, body) => {

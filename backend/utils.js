@@ -55,15 +55,14 @@ export const mailgun = () =>
   });
 
 export const payOrderEmailTemplate = (order) => {
-  return `<h1>Thank you for shopping</h1>
+  return `
   <p>Hello ${order.user.name},</p>
-  <p>We have finished processing your Order:</p>
-  <h2>[Order ${order._id}] (${order.createdAt.toString().substring(0, 10)})</h2>
+  <p>We have finished processing your Order ${order._id} placed on ${order.createdAt.toString().substring(0, 10)}</p>
   <table>
   <thead>
   <tr>
   <td><strong>Product</strong></td>
-  <td><strong>Quantity</strong></td>
+  <td><strong align="center">Quantity</strong></td>
   <td><strong align="right">Price</strong></td>
   </thead>
   <tbody>
@@ -89,16 +88,16 @@ export const payOrderEmailTemplate = (order) => {
   <td align="right"> €${order.shippingPrice.toFixed(2)}</td>
   </tr>
   <tr>
-  <td colspan="2"><strong>Total Price:</strong></td>
-  <td align="right"><strong> €${order.totalPrice.toFixed(2)}</strong></td>
+  <td colspan="2">Total Price:</td>
+  <td align="right">€${order.totalPrice.toFixed(2)}</td>
   </tr>
-  <tr>
   <td colspan="2">Payment Method:</td>
-  <td align="right"> ${order.paymentMethod}</td>
-  </tr>
+  <td align="right"> </td>
   </table>
-
-  <h2>Shipping Addres:</h2>
+  <p>
+  <h3>Payment Method: ${order.paymentMethod}</h3>
+  </p>
+  <h3>Shipping Addres:</h3>
   <p>
   ${order.shippingAddress.fullName},<br/>
   ${order.shippingAddress.address},<br/>
